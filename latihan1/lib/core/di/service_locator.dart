@@ -6,14 +6,15 @@ import 'package:latihan1/features/auth/data/datasource/auth_datasource_impl.dart
 import 'package:latihan1/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:latihan1/features/auth/domain/repositories/auth_repository.dart';
 import 'package:latihan1/features/auth/domain/usecases/login_usecase.dart';
+import 'package:latihan1/features/auth/presentation/providers/auth_provider.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initDependecies() async {
-  DioClient.init();
-  await SharedPrefService.init();
   await EnvService.init();
+  await SharedPrefService.init();
+  DioClient.init();
 
   /// Features - Auth
   /// Data sources
@@ -26,4 +27,6 @@ Future<void> initDependecies() async {
 
   /// Usecases
   sl.registerLazySingleton(() => LoginUsecase(sl()));
+
+  sl.registerFactory(() => AuthProvider(loginUsecase: sl()));
 }
