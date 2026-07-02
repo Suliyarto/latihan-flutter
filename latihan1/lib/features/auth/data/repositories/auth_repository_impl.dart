@@ -15,7 +15,14 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<TenantEntity?> code(TenantPayload payload) async {
     final result = await _datasource.code(payload);
-    // DioClient.instance.setToken(result.data?.accessToken ?? '');
+    return result.data;
+  }
+
+  @override
+  Future<TenantEntity?> info(String accessToken) async {
+    final result = await _datasource.info(accessToken);
+    DioClient.instance.setToken(result.data?.accessToken ?? '');
+    await _localDatasource.saveTenant(result.data!.toIsar());
     return result.data;
   }
 

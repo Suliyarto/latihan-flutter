@@ -9,4 +9,5 @@ abstract class AuthRepository {
   Future<void> logout();
   Future<TenantEntity?> getTenant(String? code);
   Future<void> saveTenant(TenantEntity tenant);
+  Future<TenantEntity?> info(String accessToken);
 }

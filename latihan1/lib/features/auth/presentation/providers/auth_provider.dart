@@ -21,10 +21,10 @@ class AuthProvider extends ChangeNotifier {
     required this.deviceInfoService,
   });
 
-  String codeController = '';
   final TextEditingController loginController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  String codeController = '';
   String username = '';
   LoginEntity? loginData;
   bool isLoading = false;

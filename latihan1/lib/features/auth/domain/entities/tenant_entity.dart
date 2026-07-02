@@ -5,12 +5,14 @@ class TenantEntity {
   final String? name;
   final String? code;
   final String? logo;
+  final String? accessToken;
 
   TenantEntity({
     required this.id,
     required this.name,
     required this.code,
     required this.logo,
+    required this.accessToken,
   });
 
   factory TenantEntity.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class TenantEntity {
       name: json['name'] as String?,
       code: json['code'] as String?,
       logo: json['logo'] as String?,
+      accessToken: json['access_token'] as String?,
     );
   }
 
@@ -28,6 +31,7 @@ class TenantEntity {
       name: name ?? '',
       code: code ?? '',
       logo: logo ?? '',
+      accessToken: accessToken ?? '',
     );
   }
 }
